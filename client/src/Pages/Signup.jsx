@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import {Button, Label, TextInput ,Alert} from 'flowbite-react'
+import OAuth from '../Components/OAuth';
 
 function Signup() {
   const navigate=useNavigate();
@@ -89,6 +90,7 @@ function Signup() {
             </div>
 
             <Button disabled={loading} gradientDuoTone='purpleToPink' type='submit' outline>{loading ? 'Loading...Please wait' : 'Sign Up'}</Button>
+            <OAuth/>
           </form>
           <div className="flex gap-2 text-sm mt-5">
             <span>Have an account ?</span>
