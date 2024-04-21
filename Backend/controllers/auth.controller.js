@@ -1,7 +1,9 @@
 import User from '../models/user.model.js'
 import bcyptjs from 'bcryptjs'
+import {errorHandler} from '../utils/errorHandler.js'
+import {ApiError} from '../utils/ApiError.js'
 
-export const signUp=async(req,res)=>{
+export const signUp=async(req,res,next)=>{
     
     const {username,email,password}=req.body;
 
@@ -13,7 +15,7 @@ export const signUp=async(req,res)=>{
     //check if user a;ready exist
     let user = await User.findOne({email:email})
     if (user) {
-        return res.status(409).json({ error : "User already exists." });
+        next(errorHandler(400,'email already registered with us'))
     }
 
     //hash the password before saving it to database
@@ -25,6 +27,6 @@ export const signUp=async(req,res)=>{
     try {
         res.status(200).json(createUser);
     } catch (error) {
-        res.status(500).json({message:error.message})
+        next(error)
     }
 }
