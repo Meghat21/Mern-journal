@@ -10,12 +10,14 @@ import Signin from './Pages/Signin'
 import Signup from './Pages/Signup'
 import Dashboard from './Pages/Dashboard'
 import Project from './Pages/Projects'
+import Heade from './Pages/Heade'
 
 function App() {
 
   return (
     <>
       <BrowserRouter>
+        <Heade/>
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/about' element={<About/>}/>
