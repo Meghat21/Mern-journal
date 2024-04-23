@@ -42,7 +42,7 @@ export default function Header() {
         {/* <FaMoon/> */}
         </Button>
           {currentUser ? (
-            <Dropdown className='' arrowIcon={false} inline label={<Avatar  alt='user' img={currentUser.profilePicture} rounded />}>
+            <Dropdown className='' arrowIcon={false} inline label={<Avatar  alt='user' img={currentUser.ProfilePicture} rounded />}>
               <Dropdown.Header>
                 <span className='block text-sm'>@{currentUser.username}</span>
                 <span className="block text-sm font-medium truncate">{currentUser.email}</span>
