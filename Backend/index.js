@@ -2,6 +2,8 @@ import express from "express"
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import authRouter from './routes/auth.js'
+import userRouter from './routes/user.js'
+import cookieParser from 'cookie-parser'
 
 dotenv.config()
 
@@ -15,8 +17,10 @@ mongoose.connect(process.env.MONGO_URL)
 
 const app=express();
 app.use(express.json())
+app.use(cookieParser())
 
 app.use('/app/v1/auth',authRouter)
+app.use('/app/v1/user',userRouter);
 
 app.listen(3000,()=>{
     console.log("Server is running")
