@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import authRouter from './routes/auth.js'
 import userRouter from './routes/user.js'
+import postRoute from './routes/post.js'
 import cookieParser from 'cookie-parser'
 
 dotenv.config()
@@ -21,6 +22,8 @@ app.use(cookieParser())
 
 app.use('/app/v1/auth',authRouter)
 app.use('/app/v1/user',userRouter);
+app.use('/app/v1/post',postRoute);
+
 
 app.listen(3000,()=>{
     console.log("Server is running")

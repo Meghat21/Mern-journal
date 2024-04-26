@@ -4,6 +4,7 @@ import {useSelector,useDispatch} from 'react-redux'
 import {updateInStart,updateInFailure,updateInSuccess,deleteInFailure,deleteInStart,deleteInSuccess,signotuSuccess} from '../redux/User/userSlice'
 import {getDownloadURL, getStorage, ref, uploadBytes, uploadBytesResumable} from 'firebase/storage'
 import {app} from '../firebase'
+import {Link} from 'react-router-dom'
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import {HiOutlineExclamationCircle} from 'react-icons/hi'
@@ -220,6 +221,18 @@ export default function DashProfile() {
           <Button type='submit' gradientDuoTone='purpleToBlue' outline>
             Update
           </Button>
+          
+          {/* checking if user is admin so that allowing thing accordingly */}
+          {
+            currentUser.isAdmin && (
+              <Button type='button' gradientDuoTone='purpleToBlue' className='w-full'>
+                <Link to={'/create-post'}>
+                Create Post
+                </Link>
+              </Button>
+            )
+          }
+
         </form>
         <div className='text-red-500 flex justify-between mt-5'>
           <span onClick={()=>setshowModal(true)} className='cursor-pointer'>Delete Account</span>

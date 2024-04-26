@@ -17,6 +17,10 @@ const userSchema=new mongoose.Schema({
     ProfilePicture:{
         type:String,
         default:"https://static.vecteezy.com/system/resources/previews/009/749/643/non_2x/woman-profile-mascot-illustration-female-avatar-character-icon-cartoon-girl-head-face-business-user-logo-free-vector.jpg"
+    },
+    isAdmin:{
+        type:Boolean,
+        default:false
     }
 },{timestamps:true})
 
