@@ -40,16 +40,31 @@ function DashUsers() {
   const handleShowMore=async()=>{
     const startIndex=users.length;
     try {
-      const res=await fetch(`/app/v1/user/getUsers?startIndex=${startIndex}`);
+      const res=await fetch(`/app/v1/user/getUsers?startIndex=${userIdToDelete}`);
       const data=await res.json();
       if(res.ok){
-        setUsers((prev)=>[...prev,...data.users]);
-        if(data.users.length<9){
-          setShowMore(false)
+        setUsers((prev)=>prev.filter((user)=>user._id !== userIdToDelete));
+        setShowMore(false)
         }
-      }
     } catch (error) {
       console.log(error.message)
+    }
+  }
+
+  const handleUserDelete=async()=>{
+    try {
+        const res=await fetch(`/app/v1/user/delete/${currentUser._id}`,{
+            method:'DELETE'
+          });
+          const data=await res.json();
+          if(!res.ok){
+            console.log(data.message)
+          }else{
+            setUserPost((prev)=>
+          prev.filter((post)=>post._id !== postIdToDelete))
+          }
+    } catch (error) {
+        
     }
   }
 
@@ -122,7 +137,7 @@ function DashUsers() {
               Are you sure you want to delete this user?
             </h3>
             <div className='flex justify-center gap-4'>
-              <Button color='failure'>
+              <Button color='failure' onClick={handleUserDelete}>
                 Yes, I'm sure
               </Button>
               <Button color='gray' onClick={() => setShowModal(false)}>
