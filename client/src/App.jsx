@@ -17,12 +17,15 @@ import OnlyAdminRoute from './Components/OnlyAdminRoute'
 import CreatePost from './Pages/CreatePost'
 import UpdatePost from './Pages/UpdatePage'
 import PostPage from './Pages/PostPage'
+import ScrollToTop from './Components/ScrollToTop'
 
 function App() {
 
   return (
     <>
       <BrowserRouter>
+      <ScrollToTop/>
+        
         <Heade/>
         <Routes>
           <Route path='/' element={<Home/>}/>
